@@ -62,7 +62,7 @@ public class PlayerControllerScript : MonoBehaviour {
 
 	void Update(){
 		//Jump
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetButtonDown("Jump")) {
 			if (grounded) {	
 				anim.SetBool ("Ground", false);
 				rb2d.AddForce (new Vector2 (0, jumpForce));
