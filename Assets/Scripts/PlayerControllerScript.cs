@@ -22,11 +22,14 @@ public class PlayerControllerScript : MonoBehaviour {
 	
 	Rigidbody2D rb2d;
 
+	ParticleSystem ps;
+
 	// Use this for initialization
 	void Start () {
 		//Hämtar bara referenser 1 gång, GetComponent är väldigt långsam!!!
 		rb2d = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		ps = GetComponent<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -35,14 +38,17 @@ public class PlayerControllerScript : MonoBehaviour {
 		//grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
 		grounded = isGrounded ();
 		anim.SetBool("Ground", grounded);
-
+		ps.enableEmission = false;
 		//get user input
 		float move = Input.GetAxis("Horizontal");
 
 		anim.SetFloat("Speed", Mathf.Abs(move));
-
-		rb2d.velocity = new Vector2 (move * maxSpeed, rb2d.velocity.y);
-		
+		if (Input.GetButton ("Speed_boost")) {
+			ps.enableEmission = true;
+			rb2d.velocity = new Vector2 (move * (maxSpeed +4), rb2d.velocity.y);
+		} else {
+			rb2d.velocity = new Vector2 (move * maxSpeed, rb2d.velocity.y);
+		}
 		if(move > 0 && !facingRight)
 			Flip();
 		else if(move < 0 && facingRight)
