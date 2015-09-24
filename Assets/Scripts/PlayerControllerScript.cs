@@ -71,12 +71,12 @@ public class PlayerControllerScript : MonoBehaviour {
 		if (Input.GetButtonDown("Jump")) {
 			if (grounded) {	
 				anim.SetBool ("Ground", false);
-				rb2d.AddForce (new Vector2 (0, jumpForce));
+				rb2d.AddForce (new Vector2 (rb2d.velocity.x, jumpForce));
 				canDoubleJump = true;
 			}
 			else if (canDoubleJump){
-				rb2d.velocity = new Vector2(0,0);
-				rb2d.AddForce (new Vector2 (0, jumpForce));
+				rb2d.velocity = new Vector2(rb2d.velocity.x,0);
+				rb2d.AddForce (new Vector2 (rb2d.velocity.x, jumpForce));
 				canDoubleJump = false;
 			}
 		}
