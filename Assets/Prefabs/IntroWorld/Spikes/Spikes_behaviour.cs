@@ -15,6 +15,7 @@ public class Spikes_behaviour : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col){
 		if(col.gameObject.tag == "Player"){
+			yield return new WaitForSeconds(3);
 			Application.LoadLevel(Application.loadedLevelName);
 		}
 	}

@@ -3,7 +3,8 @@ using System.Collections;
 
 public class spiky_enemy_behaviour : MonoBehaviour {
 
-	public float forcePower = 1000;
+	float forcePower = 2500;
+	bool triggered = false;
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +18,18 @@ public class spiky_enemy_behaviour : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col) {
 		if (col.gameObject.tag == "Player") {
-			//target = col.gameObject.GetComponent<Rigidbody2D>();
-			//col.rigidbody.AddForce(new Vector2(0, 1000));
-			//Vector2 forceVector = col.rigidbody.velocity.normalized * forcePower;
-			col.rigidbody.velocity = new Vector2(0,	0);
-			col.rigidbody.AddForce(col.transform.right*forcePower);
+			if(!triggered){
+				triggered = true;
+				col.rigidbody.velocity = new Vector2(0,	0);
+				Vector2 forceVector = new Vector2(0, forcePower);
+				col.rigidbody.AddForce(forceVector);
+			}
+		}
+	}
 
-			//var forceVec : Vector3 = -target_.rigidbody.velocity.normalized * explosionStrength;
-			//target_.rigidbody.AddForce(forceVec,ForceMode.Acceleration);
+	void OnCollisionExit2D(Collision2D col){
+		if (col.gameObject.tag == "Player") {
+			triggered = false;
 		}
 	}
 }
