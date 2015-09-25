@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class goal_detection : MonoBehaviour {
 	public int levelToLoad = 0;
 	public Canvas endScreen;
+	public EventSystem es;
+	public GameObject continueBtn;
 	// Use this for initialization
 	void Start () {
 	
@@ -19,6 +22,7 @@ public class goal_detection : MonoBehaviour {
 		if (col.gameObject.tag == "Player") {
 			Time.timeScale = 0f;
 			endScreen.enabled = true;
+			es.SetSelectedGameObject(continueBtn);
 		}
 	}
 }
