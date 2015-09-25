@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class goal_detection : MonoBehaviour {
-	public int levelToLoad = 0;
 	public Canvas endScreen;
 	public EventSystem es;
 	public GameObject continueBtn;

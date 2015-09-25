@@ -5,6 +5,8 @@ using System.Collections;
 public class CompleteScript : MonoBehaviour {
 	
 	public Canvas cv;
+	public Button continueBtn;
+	public bool active = false;
 	//public int levelToLoad = 0;
 
 	
