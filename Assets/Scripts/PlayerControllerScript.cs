@@ -80,7 +80,6 @@ public class PlayerControllerScript : MonoBehaviour {
 				canDoubleJump = false;
 			}
 		}
-
 	}
 
 	void Flip() {
