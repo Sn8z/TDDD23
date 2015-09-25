@@ -43,4 +43,12 @@ public class PauseScript : MonoBehaviour {
 			Time.timeScale = 0f;
 		}
 	}
+	public void mainMenu(){
+		Application.LoadLevel (0);
+		Time.timeScale = 1.0f;
+	}
+	public void resetLevel(){
+		Application.LoadLevel (Application.loadedLevel);
+		Time.timeScale = 1.0f;
+	}
 }
