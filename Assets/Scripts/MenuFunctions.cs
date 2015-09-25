@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
-public class MenuController : MonoBehaviour {
+public class MenuFunctions : MonoBehaviour {
+
 	public void loadLevel(int level){
 		Application.LoadLevel (level);
 	}
