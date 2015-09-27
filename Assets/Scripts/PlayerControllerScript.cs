@@ -23,6 +23,8 @@ public class PlayerControllerScript : MonoBehaviour {
 	Rigidbody2D rb2d;
 
 	ParticleSystem ps;
+	//Audio
+	public AudioSource jump;
 
 	// Use this for initialization
 	void Start () {
@@ -70,11 +72,13 @@ public class PlayerControllerScript : MonoBehaviour {
 		//Jump
 		if (Input.GetButtonDown("Jump")) {
 			if (grounded) {	
+				jump.Play();
 				anim.SetBool ("Ground", false);
 				rb2d.AddForce (new Vector2 (rb2d.velocity.x, jumpForce));
 				canDoubleJump = true;
 			}
 			else if (canDoubleJump){
+				jump.Play();
 				rb2d.velocity = new Vector2(rb2d.velocity.x,0);
 				rb2d.AddForce (new Vector2 (rb2d.velocity.x, jumpForce));
 				canDoubleJump = false;
