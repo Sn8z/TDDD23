@@ -6,6 +6,7 @@ public class PlayerControllerScript : MonoBehaviour {
 	//Speed and direction
 	public float maxSpeed = 2;
 	bool facingRight = true;
+	bool canMove = true;
 
 	//Grounded or not
 	bool grounded = false;
@@ -42,19 +43,22 @@ public class PlayerControllerScript : MonoBehaviour {
 		anim.SetBool("Ground", grounded);
 		ps.enableEmission = false;
 		//get user input
-		float move = Input.GetAxis("Horizontal");
+		if (canMove) {
+			float move = Input.GetAxis("Horizontal");
 
-		anim.SetFloat("Speed", Mathf.Abs(move));
-		if (Input.GetAxis("Speed_boost") != 0) {
-			ps.enableEmission = true;
-			rb2d.velocity = new Vector2 (move * (maxSpeed +4), rb2d.velocity.y);
-		} else {
-			rb2d.velocity = new Vector2 (move * maxSpeed, rb2d.velocity.y);
+			anim.SetFloat("Speed", Mathf.Abs(move));
+
+			if (Input.GetAxis ("Speed_boost") != 0) {
+				ps.enableEmission = true;
+				rb2d.velocity = new Vector2 (move * (maxSpeed + 4), rb2d.velocity.y);
+			} else {
+				rb2d.velocity = new Vector2 (move * maxSpeed, rb2d.velocity.y);
+			}
+			if (move > 0 && !facingRight)
+				Flip ();
+			else if (move < 0 && facingRight)
+				Flip ();
 		}
-		if(move > 0 && !facingRight)
-			Flip();
-		else if(move < 0 && facingRight)
-			Flip();
 		
 	}
 
@@ -70,7 +74,7 @@ public class PlayerControllerScript : MonoBehaviour {
 
 	void Update(){
 		//Jump
-		if (Input.GetButtonDown("Jump")) {
+		if (Input.GetButtonDown("Jump") && canMove) {
 			if (grounded) {	
 				jump.Play();
 				anim.SetBool ("Ground", false);
@@ -84,7 +88,19 @@ public class PlayerControllerScript : MonoBehaviour {
 				canDoubleJump = false;
 			}
 		}
+	}
 
+	public void killPlayer(){
+		StartCoroutine (Death());
+	}
+	
+	IEnumerator Death(){
+		canMove = false;
+		rb2d.velocity = Vector2.zero;
+		rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+		//play animation
+		yield return new WaitForSeconds(2);
+		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	void Flip() {

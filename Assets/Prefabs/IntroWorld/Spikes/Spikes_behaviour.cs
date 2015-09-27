@@ -15,7 +15,8 @@ public class Spikes_behaviour : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col){
 		if(col.gameObject.tag == "Player"){
-			Application.LoadLevel(Application.loadedLevelName);
+			col.gameObject.GetComponent<PlayerControllerScript>().killPlayer();
+			//Application.LoadLevel(Application.loadedLevelName);
 		}
 	}
 }
