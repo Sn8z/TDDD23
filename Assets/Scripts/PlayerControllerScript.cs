@@ -45,7 +45,7 @@ public class PlayerControllerScript : MonoBehaviour {
 		float move = Input.GetAxis("Horizontal");
 
 		anim.SetFloat("Speed", Mathf.Abs(move));
-		if (Input.GetButton ("Speed_boost")) {
+		if (Input.GetAxis("Speed_boost") != 0) {
 			ps.enableEmission = true;
 			rb2d.velocity = new Vector2 (move * (maxSpeed +4), rb2d.velocity.y);
 		} else {
@@ -84,6 +84,7 @@ public class PlayerControllerScript : MonoBehaviour {
 				canDoubleJump = false;
 			}
 		}
+
 	}
 
 	void Flip() {
