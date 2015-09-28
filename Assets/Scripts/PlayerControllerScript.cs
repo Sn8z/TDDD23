@@ -96,6 +96,7 @@ public class PlayerControllerScript : MonoBehaviour {
 	
 	IEnumerator Death(){
 		canMove = false;
+		anim.SetBool("Dead", true);
 		rb2d.velocity = Vector2.zero;
 		rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
 		//play animation
