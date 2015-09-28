@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour {
 			
 			Vector3 targetDirection = (target.transform.position - posNoZ);
 			
-			interpVelocity = targetDirection.magnitude * 10f;
+			interpVelocity = targetDirection.magnitude * 20f;
 			
 			targetPos = transform.position + (targetDirection.normalized * interpVelocity * Time.deltaTime); 
 			
