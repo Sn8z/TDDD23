@@ -7,7 +7,6 @@ public class TimerScript : MonoBehaviour {
 	Text displayText;
 	// Use this for initialization
 	void Start () {
-		transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1,1,0));
 		displayText = this.gameObject.GetComponent<Text> ();
 	}
 	
