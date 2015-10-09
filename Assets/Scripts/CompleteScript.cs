@@ -8,7 +8,6 @@ public class CompleteScript : MonoBehaviour {
 	public Button continueBtn;
 	public Button menuBtn;
 	public bool isActive = false;
-	//public int levelToLoad = 0;
 
 	
 	// Use this for initialization
@@ -27,13 +26,13 @@ public class CompleteScript : MonoBehaviour {
 
 	}
 
-	public void nextLevel(int levelToLoad){
+	public void nextLevel(string levelToLoad){
 		Application.LoadLevel (levelToLoad);
 		Time.timeScale = 1f;
 	}
 
 	public void mainMenu(){
-		Application.LoadLevel (0);
+		Application.LoadLevel ("mainmenu");
 		Time.timeScale = 1f;
 	}
 }

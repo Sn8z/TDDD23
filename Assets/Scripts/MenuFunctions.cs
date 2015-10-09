@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MenuFunctions : MonoBehaviour {
 
-	public void loadLevel(int level){
+	public void loadLevel(string level){
 		Application.LoadLevel (level);
 	}
 
