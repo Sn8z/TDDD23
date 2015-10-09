@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class snowball_behaviour : MonoBehaviour {
+public class projectile_behaviour : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D col) {
+        //Maybe create an "explosion" animation
         Destroy(gameObject);
     }
 }
