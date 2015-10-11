@@ -9,7 +9,7 @@ public class goal_detection : MonoBehaviour {
 	public GameObject continueBtn;
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
@@ -20,6 +20,7 @@ public class goal_detection : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D col) {
 		if (col.gameObject.tag == "Player") {
 			Time.timeScale = 0f;
+			GameObject.Find("Timer").GetComponent<TimerScript>().updateHighscore();
 			endScreen.enabled = true;
 			es.SetSelectedGameObject(continueBtn);
 		}

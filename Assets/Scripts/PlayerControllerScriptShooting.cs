@@ -34,6 +34,8 @@ public class PlayerControllerScriptShooting : MonoBehaviour {
     public Transform bulletSource;
     float bulletSpeedX = 11f;
     float bulletSpeedY = 1f;
+	float attackSpeed = 0.75f;
+	float cooldown;
 
 	// Use this for initialization
 	void Start () {
@@ -97,7 +99,12 @@ public class PlayerControllerScriptShooting : MonoBehaviour {
 			}
 		}
 
-        if (Input.GetButtonDown("Fire")) {
+		if (cooldown >= 0) {
+			cooldown -= Time.deltaTime;
+		}
+
+        if (Input.GetButtonDown("Fire") && cooldown <= 0f) {
+			cooldown = attackSpeed;
             Shoot();        
         }
 	}
