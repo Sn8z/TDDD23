@@ -31,7 +31,7 @@ public class TimerScript : MonoBehaviour {
 	public void updateHighscore(){
 		if (timer < highscore) {
 			highscoreText.text = "Highscore: " + timer.ToString("0.00") + " s";
-			displayTimeText.text = timer.ToString("0.00") + " s";
+			displayTimeText.text = "NEW HIGHSCORE!";
 			PlayerPrefs.SetFloat(Application.loadedLevelName, timer);
 		}
 	}
