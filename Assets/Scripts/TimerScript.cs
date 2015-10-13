@@ -25,7 +25,10 @@ public class TimerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer += Time.deltaTime;
-		displayTimeText.text = timer.ToString("0.00") + " s";
+        if (displayTimeText.text != "NEW HIGHSCORE!")
+        {
+            displayTimeText.text = timer.ToString("0.00") + " s";
+        }
 	}
 
 	public void updateHighscore(){
